@@ -5,7 +5,7 @@ Foodlg Flask backend app to host object detection and classification models, as 
 #### Refer to https://stackoverflow.com/questions/48734119/git-lfs-is-not-a-git-command-unclear/48734334 for installation of Git LFS
 ```
 $ git lfs install
-$ git clone https://github.com/vaanforz/Foodlg-Rafiki-Replacement.git
+$ git clone https://github.com/pinpom/Foodlg-Rafiki-Replacement.git
 $ docker build -t foodlg_flask .
 ```
 
