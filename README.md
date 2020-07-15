@@ -29,7 +29,7 @@ coordinates (ranging from 0 to 1) in the form `[ymin, xmin, ymax, xmax]`.
 You can also test it on the command line, for example:
 
 ```
-$ curl -F "image=@assets/dinner.jpg" -XPOST http://localhost:5000/model/predict
+$ curl -F "image=@dinner.jpeg" -XPOST http://localhost:5000/model/predict
 ```
 
 You should see a JSON response like that below:
