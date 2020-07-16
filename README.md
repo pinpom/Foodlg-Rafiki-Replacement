@@ -2,20 +2,18 @@
 Foodlg Flask backend app to host object detection and classification models, as temporary replacement for Rafiki
 
 ### Build application (make sure Git LFS is installed)
-#### Refer to https://stackoverflow.com/questions/48734119/git-lfs-is-not-a-git-command-unclear/48734334 for installation of Git LFS
 ```
-$ git lfs install
-$ git clone https://github.com/pinpom/Foodlg-Rafiki-Replacement.git
-$ docker build -t foodlg_flask .
+$ git clone 
+$ docker build -t foodlg_flask_101 .
 ```
 
 ### Run the container
 Create a container from the image.
 ```
-$ docker run --name foodlg-flask-container -d -p 5000:5000 foodlg_flask
+$ docker run --name foodlg-flask-container-101 -d -p 5001:5001 foodlg_flask_101
 ```
 
-Now visit http://localhost:5000
+Now visit http://localhost:5001
 ```
  Flask app has started successfully! 
 ```
@@ -29,7 +27,7 @@ coordinates (ranging from 0 to 1) in the form `[ymin, xmin, ymax, xmax]`.
 You can also test it on the command line, for example:
 
 ```
-$ curl -F "image=@dinner.jpeg" -XPOST http://localhost:5000/model/predict
+$ curl -F "image=@000004.jpeg" -XPOST http://localhost:5001/model/predict
 ```
 
 You should see a JSON response like that below:

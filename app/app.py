@@ -20,9 +20,14 @@ import keras.backend.tensorflow_backend as ktf
 
 from models.darknet import darknet 
 
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2"
+
 config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
 session = tf.Session(config=config)
 K.set_session(session)
+
 
 app = Flask(__name__)
 
@@ -88,17 +93,17 @@ if __name__ == "__main__":
     det_net = darknet.load_net(b"/app/app/models/darknet/cfg/yolov3-food.cfg", b"/app/app/models/darknet/backup/food/yolov3-food_final.weights", 0)
     det_meta = darknet.load_meta(b"/app/app/models/darknet/cfg/food.data")
 
-    classes = 231
+    classes = 101
     base_model = Xception(include_top=True, input_shape=(299, 299, 3))
     base_model.layers.pop()
     predictions = Dense(classes, activation='softmax')(base_model.layers[-1].output)
 
     global clf_model, graph, class_dict
     clf_model = Model(input=base_model.input, output=[predictions])
-    clf_model.load_weights("/app/app/models/classification/models/xception-0-15-0.82.h5")
+    clf_model.load_weights("/app/app/models/classification/models/xception-800-food101-0-17-0.85.h5")
     clf_model._make_predict_function()
     graph = tf.get_default_graph()
 
-    class_dict = {v:k for k,v in np.load("/app/app/models/classification/class_index/food231.npy")[()].items()}
+    class_dict = {v:k for k,v in np.load("/app/app/models/classification/class_index/food101.npy")[()].items()}
 
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5001)
